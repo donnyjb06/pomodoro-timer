@@ -1,2 +1,13 @@
-@use "./helper/_reset.scss" as *;
+@use "./helper/_reset.scss";
+@use "./helper/_variables.scss";
 
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+}
