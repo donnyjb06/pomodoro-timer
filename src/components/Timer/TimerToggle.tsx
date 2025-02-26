@@ -1,11 +1,12 @@
 import { FC } from "react";
-import { useTimerContext } from "@utils/hooks/useTimerContext";
+import { useTimerContext } from "@utils/Timer/TimerContext";
+import Button from "@components/Button/Button";
 
 const TimerToggle: FC = () => {
   const { toggleIsRunning, isRunning } = useTimerContext()
 
   return (
-    <button onClick={toggleIsRunning}>{isRunning ? "Pause" : "Resume"}</button>
+   <Button handleClick={toggleIsRunning} variant="big-solid">{isRunning ? "Pause" : "Start"}</Button>
   )
 }
 

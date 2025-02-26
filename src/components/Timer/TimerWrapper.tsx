@@ -1,4 +1,5 @@
-import { TimerContextProvider } from "@utils/Timer/TimerContext";
+
+import styles from "./Timer.module.scss"
 
 interface TimerWrapperProps {
 	children: React.ReactNode;
@@ -6,9 +7,7 @@ interface TimerWrapperProps {
 
 const TimerWrapper: React.FC<TimerWrapperProps> = ({ children }) => {
 	return(
-		<TimerContextProvider>
-			<div>{children}</div>
-		</TimerContextProvider>
+			<div className={styles.timer}>{children}</div>
 	)
 };
 

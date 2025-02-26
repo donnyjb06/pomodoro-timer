@@ -1,22 +1,26 @@
 import React, { FC } from "react";
-import { useTimerModeContext } from "./TimerMode";
+import { useTimerModeContext, TimerModeManager } from "./TimerMode";
 
 interface TimerContextType {
-  timeLeft: number;
-  isRunning: boolean;
-  toggleIsRunning: () => void;
-
+	timeLeft: number;
+	isRunning: boolean;
+	toggleIsRunning: () => void;
+	handleModeSwitch: (event: React.MouseEvent<HTMLButtonElement>) => void;
+	timerManager: TimerModeManager;
+	skipToNextMode: () => void;
 }
 
-const TimerContext = React.createContext<TimerContextType | undefined>(undefined)
+const TimerContext = React.createContext<TimerContextType | undefined>(
+	undefined
+);
 const useTimerContext = () => {
-  const context = React.useContext(TimerContext);
-  if (!context) {
-    throw new Error("useTimerContext must be used within a TimerProvider")
-  }
+	const context = React.useContext(TimerContext);
+	if (!context) {
+		throw new Error("useTimerContext must be used within a TimerProvider");
+	}
 
-  return context
-}
+	return context;
+};
 
 interface TimerProviderProps {
 	children: React.ReactNode;
@@ -46,15 +50,9 @@ const TimerContextProvider: FC<TimerProviderProps> = ({ children }) => {
 		});
 	};
 
-	React.useEffect(() => {
-		if (isFirstRender.current) {
-			isFirstRender.current = false;
-		}
-
-		setIsRunning(false);
-
-		setTimeLeft(timerManager._currentMode.modeTimerAmount);
-	}, [timerManager._currentMode]);
+	const skipToNextMode = () => {
+		setTimerManager(timerManager.cycleToNextMode(isCycleFinished));
+	}
 
 	React.useEffect(() => {
 		if (timeLeft === 0 && isRunning) {
@@ -73,8 +71,27 @@ const TimerContextProvider: FC<TimerProviderProps> = ({ children }) => {
 		};
 	}, [isRunning, timeLeft]);
 
+	React.useEffect(() => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false;
+		}
+
+		setIsRunning(false);
+
+		setTimeLeft(timerManager._currentMode.modeTimerAmount);
+	}, [timerManager._currentMode]);
+
 	return (
-		<TimerContext.Provider value={{ timeLeft, isRunning, toggleIsRunning }}>
+		<TimerContext.Provider
+			value={{
+				timeLeft,
+				isRunning,
+				toggleIsRunning,
+				handleModeSwitch,
+				timerManager,
+				skipToNextMode,
+			}}
+		>
 			{children}
 		</TimerContext.Provider>
 	);

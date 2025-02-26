@@ -1,0 +1,50 @@
+.timer {
+  padding-block: 20px 30px;
+  padding-inline: clamp(10px, 20vw, 50px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  .timer__buttonGroup {
+    display: flex;
+    gap: 5px;
+    flex-wrap: nowrap;
+    transition: 0.3s ease-in-out;
+  }
+
+  .timer__countdown {
+    font-size: 7.5rem;
+    font-weight: 700;
+    transition: 0.3s ease-in-out;
+  }
+}
+
+[data-theme="light"] {
+  .timer {
+    background-color: rgba($color: #000000, $alpha: 0.1);
+  }
+}
+
+@media (max-width: 347px) {
+  .timer {
+    padding-block: 15px 20px;
+
+    .timer__countdown {
+      font-size: 6.25rem;
+    }
+  }
+}
+
+@media (max-width: 305px) {
+  .timer {
+    padding-block: 10px 15px;
+
+    .timer__countdown {
+      font-size: 4rem;
+    }
+  }
+}

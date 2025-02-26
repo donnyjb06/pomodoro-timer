@@ -56,7 +56,7 @@ class TimerModeManager {
 		this._modeArray = _modeArray;
 		this._currentMode = this._modeArray[0];
 		this._maxInterval = 2;
-		this._currentIteration = 1;
+		this._currentIteration = 0;
 	}
 
 	findNodeByDataset(event: React.MouseEvent<HTMLButtonElement>) {
@@ -104,29 +104,40 @@ class TimerModeManager {
 					throw new Error("Type of newValue must be a number");
 				}
 				updatedManager._currentIteration = newValue;
-				break
-			
+				break;
+
 			default:
 				throw new Error(`Invalid property name: ${propertyName}`);
 		}
-		
+
 		return updatedManager;
 	}
 
 	cycleToNextMode(isCycleFinished: boolean) {
 		let nextMode: TimerMode;
-		let newManager: TimerModeManager = new TimerModeManager(this._modeArray);
-		if (this._currentIteration % 2 === 0 && this._currentMode !== this._modeArray[2]) {
-			nextMode = this._modeArray[2] // LONG_BREAK
+		let currentIteration = this._currentIteration;
+
+		if (
+			this._currentIteration === this._maxInterval &&
+			this._currentMode !== this._modeArray[2]
+		) {
+			nextMode = this._modeArray[2]; // LONG_BREAK
 		} else {
 			if (isCycleFinished) {
-				nextMode = this._modeArray[1] // SHORT_BREAK
+				nextMode = this._modeArray[1]; // SHORT_BREAK
 			} else {
-				nextMode = this._modeArray[0] // POMODORO MODE
-				newManager = this.getUpdatedManagerForState(this._currentIteration + 1, "currentIteration")
+				nextMode = this._modeArray[0]; // POMODORO MODE
+				currentIteration =
+					this._currentMode === this._modeArray[2]
+						? 0
+						: currentIteration + 1;
 			}
 		}
 
+		let newManager = this.getUpdatedManagerForState(
+			currentIteration,
+			"currentIteration"
+		);
 		return newManager.getUpdatedManagerForState(nextMode, "currentMode");
 	}
 }
@@ -178,11 +189,15 @@ const TimerModeContextProvider: FC<TimerProviderProps> = ({ children }) => {
 		[timerManager]
 	);
 
+	console.log(timerManager._currentIteration);
+
 	return (
-		<TimerModeContext.Provider value={{ timerManager, handleModeSwitch, setTimerManager }}>
+		<TimerModeContext.Provider
+			value={{ timerManager, handleModeSwitch, setTimerManager }}
+		>
 			{children}
 		</TimerModeContext.Provider>
 	);
 };
 
-export { useTimerModeContext, TimerModeContextProvider };
+export { useTimerModeContext, TimerModeContextProvider, ModeType, TimerModeManager };
