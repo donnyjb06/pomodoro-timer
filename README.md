@@ -5,7 +5,7 @@
 	<em><code>A minimalist Pomodoro timer built with React and TypeScript</code></em>
 </p>
 <p align="left">
-	<img src="https://img.shields.io/github/license/donnyjb06/pomodoro-timer?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
+	<img src="https://img.shields.io/github/license/donnyjb06/pomodoro-timer?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff&label=license" alt="MIT License">
 	<img src="https://img.shields.io/github/last-commit/donnyjb06/pomodoro-timer?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
 	<img src="https://img.shields.io/github/languages/top/donnyjb06/pomodoro-timer?style=default&color=0080ff" alt="repo-top-language">
 	<img src="https://img.shields.io/github/languages/count/donnyjb06/pomodoro-timer?style=default&color=0080ff" alt="repo-language-count">
