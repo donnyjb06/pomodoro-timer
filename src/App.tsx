@@ -44,6 +44,7 @@ function App() {
 						</Timer.ButtonGroup>}
 						<Timer.Counter />
 						{isModeButtonsHidden ? <Timer.CycleBtn /> : <Timer.Toggle />}
+						<Timer.Alarm />
 					</Timer.Wrapper>
 				</TimerContextProvider>
 			</Main>
