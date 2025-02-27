@@ -430,4 +430,4 @@ This project is protected under the [MIT License](https://opensource.org/license
 
 <img src="./public/webpage-preview.png" alt="preview image">
 
-[Preview Pomodoro Timer](https://donnyjb06.github.io/pomodoro-timer/)
+<a href="https://donnyjb06.github.io/pomodoro-timer/" target="_blank">Preview Pomodoro Timer</a>
