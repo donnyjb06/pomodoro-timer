@@ -416,7 +416,7 @@ Run pomodoro-timer using the following command:
 
 ## 🎗 License
 
-This project is protected under the MIT License
+This project is protected under the [MIT License](https://opensource.org/license/mit)
 
 ---
 
@@ -429,3 +429,5 @@ This project is protected under the MIT License
 ## Preview
 
 <img src="./public/webpage-preview.png" alt="preview image">
+
+[Preview Pomodoro Timer](https://donnyjb06.github.io/pomodoro-timer/)
