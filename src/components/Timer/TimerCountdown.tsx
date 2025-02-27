@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useTimerContext } from "@utils/Timer/TimerContext";
 import styles from "./Timer.module.scss";
 import useMediaQuery from "@utils/useMediaQuery";
